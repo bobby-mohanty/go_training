@@ -1,0 +1,7 @@
+Assignment 3:
+
+- Make interface with n methods and implement methods for diff structs and call them.
+
+- Make a struct and interface and implement all methods except one.
+
+- Use all the methods in reflect package

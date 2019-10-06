@@ -1,0 +1,11 @@
+//Employee registration
+//CRUD operations create each func
+//firstname, lastname, dob,
+ salary structure
+  variable payout:basic:hra, rating, leave balance,
+   contact info structure
+//calculate netsalary based on TDS, if leaves taken, cut it from salary
+//calculate appraisal, rating as input
+//func to get emergency details of employee
+//get 10 close friends keys will be id and name wil be values
+//if fights with two, remove that 2 friends

@@ -1,0 +1,30 @@
+Interfaces in Go
+----------------
+
+Interfaces are collection of empty method declarations, which are to be implemented afterwards.
+
+Used to implement polymorphic behaviour.
+
+The methods can be associated with any struct. (or) structs, who belong to an interface, are bound to have same set of methods.
+
+Interface maintains a i-table, which has all the declared method signatures and their respective types.
+
+If one the method is not implemented then the type value of the method is not found on i-table so error occurs.
+
+Empty-Interface: Interface without any methods. acts as a void ponter. Can be used to store value of any data type.
+
+-----------------------------
+- Struct Instead of classes: Go doesnt use classes
+- Composition in place of inheritance: we used nested strct instead of inheritance
+-----------------------------
+
+reflection - reflect package
+-----------------------------
+Has methods to get the datatype and sizes of values stored in interfaces in runtime.
+
+e.g. TypeOf, ValueOf, etc
+
+Switch-Case
+-----------------------------
+- no need to use "break" statement
+- fall-through mechanism in go switch-cases

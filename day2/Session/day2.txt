@@ -1,0 +1,14 @@
+Topics Covered:
+------------------
+Control Flow
+- If else
+- for Loops
+
+More on array and slices
+Variadic functions
+First Class or anonymous functions (https://golangbot.com/first-class-functions/)
+Strings package
+Pointers
+Structures
+Methods
+Maps

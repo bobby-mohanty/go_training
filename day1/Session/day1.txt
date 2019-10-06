@@ -1,0 +1,40 @@
+Topics covered
+-------------------
+- Intro and applications of Golang
+- Hello world of Golang
+- Variables
+    Variables can be declared as follows
+        var var_name datatype
+    (or) var_name := value
+
+Go is statically typed language. when := is used the value's data 
+type is detected by go and the variable is assigned the datatype
+
+Datatypes
+-------------------
+Two types:
+- Reference (Slice, Maps, etc)
+- Value  (Array, String, etc)
+Reference datatypes are pointer to value types and are mutable.
+Value type are immutable
+
+Package
+-------------------
+Created and used for name resolutions or isolation of functions and data-structures
+Also for readablity and resuablity of code
+Types:
+    - Exceutable
+    - Reference
+
+Constants:
+-------------------
+Constants are declared like variables, but with the const keyword.
+Constants can be character, string, boolean, or numeric values.
+Constants cannot be declared using the := syntax.
+
+e.g. const Pi = 3.14
+
+Array and slices
+-------------------
+Arrays are fixed list of data of same datatype i.e. var arr [10]int
+Slices and mutable lists of same datatype i.e. var arr_s []int
