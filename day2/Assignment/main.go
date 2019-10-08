@@ -10,13 +10,6 @@ type salary struct {
 	medical       float64
 }
 
-// type address struct {
-// 	flat string
-// 	address string
-// 	city string
-// 	state string
-// 	pincode int
-// }
 
 type contact struct {
 	mob     int

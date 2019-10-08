@@ -1,0 +1,24 @@
+Defer and Error Handling
+------------------------
+
+Topics Covered:
+---------------
+- Defer : Used for cleanup where the statement gets executed once func's scope changes
+            syntax: defer <statement>
+- Error handling using error package
+- Custom error using errors package
+- Panic : exits the program and prints the stack trace. If defers are used then all the defers are called before exiting
+- recover function is used  to recover from a panic
+    - should be used in defer
+    - should be used in an anonymous or first class function
+    defer func() {
+        recover()
+    }()
+
+
+Read about:
+- Go scheduler
+- Go runtime
+
+Task:
+- program to showcase all the types of usage of error, errors, panic and recover
