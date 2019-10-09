@@ -17,9 +17,11 @@ func readFile(filename string) {
 		recover()
 	}()
 	if err != nil {
-		panic(fmt.Sprintf("file '%s' doesn't exist", filename))
+		fmt.Printf("file '%s' doesn't exist\n", filename)
+		panic(fmt.Sprintf("file '%s' doesn't exist\n", filename))
 	} else {
 		if _, e := fp.Read(content); e != nil {
+			fmt.Println("Cannot read file content ")
 			panic("Cannot read file content ")
 		}
 		fmt.Println("File Content :", string(content))

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -41,17 +42,18 @@ type employee struct {
 type employees map[int]employee
 
 func showOptions() {
-	const options = "\n1. Create employee\n" +
-		"2. Show employee details\n" +
-		"3. Update employee details\n" +
-		"4. Delete employee\n" +
-		"5. Show friends\n" +
-		"6. Calculate appraisal\n" +
-		"7. Show emergency details\n" +
-		"8. Delete friend\n" +
-		"0. Exit\n\n" +
-		"Enter a valid option: "
-	fmt.Println(options)
+	tw := table.NewWriter()
+	tw.AppendRow(table.Row{"1", "Create employee"})
+	tw.AppendRow(table.Row{"2", "Show employee details"})
+	tw.AppendRow(table.Row{"3", "Update employee details"})
+	tw.AppendRow(table.Row{"4", "Delete employee"})
+	tw.AppendRow(table.Row{"5", "Show friends"})
+	tw.AppendRow(table.Row{"6", "Calculate appraisal"})
+	tw.AppendRow(table.Row{"7", "Show emergency details"})
+	tw.AppendRow(table.Row{"8", "Delete friend"})
+	tw.AppendRow(table.Row{"0", "Exit"})
+	fmt.Println(tw.Render())
+	fmt.Print("Enter a valid option: ")
 }
 
 func removeDupliactes(s []int) []int {
@@ -67,6 +69,7 @@ func removeDupliactes(s []int) []int {
 }
 
 func (e *employees) populateFriends() {
+	fmt.Println("Inside populate: Updated friends map\n", "############################################")
 	for key, emp := range *e {
 		for _, v := range emp.friends {
 			if frnd, ok := (*e)[v]; ok {
@@ -75,7 +78,7 @@ func (e *employees) populateFriends() {
 				(*e)[v] = frnd
 			}
 		}
-		fmt.Println("Inside populate:", emp.friends)
+		fmt.Println(emp.id, "-->", emp.friends)
 	}
 }
 
@@ -181,17 +184,17 @@ func (e employees) displayEmpDetails(id int) {
 			if v.leavesTaken > v.totalLeaves {
 				leaveDeduction = float64(v.leavesTaken-v.totalLeaves) * (v.basic * 0.02)
 			}
-			tw.AppendRow(table.Row{idx, v.fname+" "+v.lname, string(v.dob), string(v.rating),
-				float64(v.totalLeaves-v.leavesTaken), v.contact.mob, v.contact.city, v.contact.emergency,
-				float64(v.salary.basic+v.salary.hra+v.salary.lta+v.salary.cityAllowance-leaveDeduction)})
+			tw.AppendRow(table.Row{idx, v.fname + " " + v.lname, string(v.dob), string(v.rating),
+				float64(v.totalLeaves - v.leavesTaken), v.contact.mob, v.contact.city, v.contact.emergency,
+				float64(v.salary.basic + v.salary.hra + v.salary.lta + v.salary.cityAllowance - leaveDeduction)})
 		} else if id == idx {
 			leaveDeduction := 0.0
 			if v.leavesTaken > v.totalLeaves {
 				leaveDeduction = float64(v.leavesTaken-v.totalLeaves) * (v.basic * 0.02)
 			}
-			tw.AppendRow(table.Row{idx, v.fname+" "+v.lname, string(v.dob), string(v.rating),
-				float64(v.totalLeaves-v.leavesTaken), v.contact.mob, v.contact.city, v.contact.emergency,
-				float64(v.salary.basic+v.salary.hra+v.salary.lta+v.salary.cityAllowance-leaveDeduction)})
+			tw.AppendRow(table.Row{idx, v.fname + " " + v.lname, string(v.dob), string(v.rating),
+				float64(v.totalLeaves - v.leavesTaken), v.contact.mob, v.contact.city, v.contact.emergency,
+				float64(v.salary.basic + v.salary.hra + v.salary.lta + v.salary.cityAllowance - leaveDeduction)})
 		}
 	}
 	fmt.Println(tw.Render())
@@ -286,13 +289,12 @@ func (e *employees) showEmergencyContact() {
 func main() {
 	var option int
 	emp := employees{}
-	cont := false
-	for !cont {
+	for {
 		showOptions()
 		_, _ = fmt.Scan(&option)
 		switch option {
 		case 0:
-			cont = true
+			os.Exit(0)
 		case 1:
 			if err := emp.createAndUpdateEmployee(0); err != nil {
 				log.Fatal(err)
@@ -304,7 +306,7 @@ func main() {
 			_, _ = fmt.Scan(&id)
 			if _, ok := emp[id]; !ok && id != 0 {
 				fmt.Printf("Employee with ID : %d doesn't exist", id)
-				break
+				continue
 			} else {
 				emp.displayEmpDetails(id)
 			}
@@ -314,7 +316,7 @@ func main() {
 			_, _ = fmt.Scan(&id)
 			if _, ok := emp[id]; !ok {
 				fmt.Printf("Employee with ID : %d doesn't exist", id)
-				break
+				continue
 			} else if err := emp.createAndUpdateEmployee(id); err != nil {
 				log.Fatal(err)
 			}
