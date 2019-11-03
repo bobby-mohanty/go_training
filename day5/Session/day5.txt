@@ -1,0 +1,16 @@
+Concurrency in Go
+-----------------
+- Concurrency and parallelism difference
+- Goroutines :
+  ------------
+  It's an independently running function launched by a go statement
+  exists only in the virtual env or space of go runtime
+  Channels
+  ------------
+
+
+
+
+
+Task;
+- WAP to create two channels and use it such that no  deadlock occurs
